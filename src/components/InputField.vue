@@ -1,21 +1,23 @@
 <template>
-  <div>
-    <input type="text" ref="amountInput" />
-    <select name="currency" id="currency" v-model="currencyOne">
-      <option v-for="key in currencyKeys" :key="key" value="key">
-        {{ key }}
-      </option>
-    </select>
-  </div>
-  <p>=</p>
-  <div>
-    <input type="text" disabled />
-    <select name="currency" id="currency" v-model="currencyTwo">
-      <option v-for="key in currencyKeys" :key="key" value="key">
-        {{ key }}
-      </option>
-    </select>
-  </div>
+  <form @submit.prevent="getConversion">
+    <div>
+      <input type="text" v-model="amountInput" />
+      <select name="currency" id="currency" v-model="currencyOne">
+        <option v-for="key in currencyKeys" :key="key" value="key">
+          {{ key }}
+        </option>
+      </select>
+    </div>
+    <p>=</p>
+    <div>
+      <input type="text" disabled />
+      <select name="currency" id="currency" v-model="currencyTwo">
+        <option v-for="key in currencyKeys" :key="key" value="key">
+          {{ key }}
+        </option>
+      </select>
+    </div>
+  </form>
 </template>
 
 <script>
@@ -25,7 +27,8 @@ export default {
       data: [],
       currencyKeys: [],
       currencyOne: "",
-      currencyTwo: "",
+        currencyTwo: "",
+      amountInput: ""
     };
   },
   methods: {
@@ -41,7 +44,10 @@ export default {
           this.currencyKeys = Object.keys(data);
         });
     },
-    conversionRate() {},
+      conversionRate() { },
+      getConversion() {
+        const rate =
+    }
   },
   mounted() {
     this.getCurrencyKeys();

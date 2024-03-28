@@ -31,48 +31,45 @@ export default {
       currencyKeys: [],
       conversionKeys: [],
       specificCurrency: [],
-      currencyOne: "",
-      currencyTwo: "",
-      amountInput: "",
+      currencyOne: "BTC",
+      currencyTwo: "USD",
+      amountInput: "1",
       sampleCurrency: "XAU",
       testData: "",
       conversion: "",
     };
   },
   methods: {
+    fetchRates() {
+      return fetch("https://api.bitpanda.com/v1/ticker").then((response) =>
+        response.json()
+      );
+    },
     fetchData() {
-      fetch("https://api.bitpanda.com/v1/ticker")
-        .then((response) => response.json())
-        .then((data) => (this.data = data));
+      this.fetchRates().then((data) => (this.data = data));
       console.log(this.data);
     },
     getCurrencyKeys() {
-      fetch("https://api.bitpanda.com/v1/ticker")
-        .then((response) => response.json())
-        .then((data) => {
-          this.currencyKeys = Object.keys(data);
-        });
+      this.fetchRates().then((data) => {
+        this.currencyKeys = Object.keys(data);
+      });
     },
     getConversionKeys() {
-      fetch("https://api.bitpanda.com/v1/ticker")
-        .then((response) => response.json())
-        .then((data) => {
-          this.conversionKeys = Object.keys(data.BTC);
-        });
+      this.fetchRates().then((data) => {
+        this.conversionKeys = Object.keys(data.BTC);
+      });
     },
     getSpecificCurrency() {
-      fetch("https://api.bitpanda.com/v1/ticker")
-        .then((response) => response.json())
-        .then((data) => {
-          this.specificCurrency = data.BTC;
-        });
+      this.fetchRates().then((data) => {
+        this.specificCurrency = data.BTC;
+      });
     },
     conversionRate() {
       const rate = this.data[this.currencyOne][this.currencyTwo];
       this.conversion = parseFloat(this.amountInput) * rate;
     },
     testAPI() {
-      console.log(this.currencyKeys);
+      console.log(this.data);
     },
   },
   mounted() {

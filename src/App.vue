@@ -1,17 +1,21 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <header>
+    <h2>BitPanda Currency Converter</h2>
+  </header>
+  <div class="container">
+    <input-field></input-field>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import InputField from "./components/InputField.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    InputField,
+  },
+};
 </script>
 
 <style>
@@ -22,5 +26,15 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.container {
+  background-color: #ccc;
+  border-radius: 7px;
+  padding: 1rem;
+  margin: 2rem auto;
+  max-width: 40rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 </style>

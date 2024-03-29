@@ -19,8 +19,6 @@
       <button>Convert</button>
     </div>
   </form>
-  <!-- <h3>Test API Here</h3>
-  <button @click="testAPI">Test</button> -->
 </template>
 
 <script>
@@ -28,9 +26,8 @@ export default {
   data() {
     return {
       data: {},
-      currencyKeys: [],
+      currencyKeys: {},
       conversionKeys: [],
-      specificCurrency: [],
       currencyOne: "BTC",
       currencyTwo: "USD",
       amountInput: "1",
@@ -59,23 +56,14 @@ export default {
         this.conversionKeys = Object.keys(data.BTC);
       });
     },
-    getSpecificCurrency() {
-      this.fetchRates().then((data) => {
-        this.specificCurrency = data.BTC;
-      });
-    },
     conversionRate() {
       const rate = this.data[this.currencyOne][this.currencyTwo];
-      this.conversion = parseFloat(this.amountInput) * rate;
-    },
-    testAPI() {
-      console.log(this.data);
+      this.conversion = (parseFloat(this.amountInput) * rate).toFixed(2);
     },
   },
   mounted() {
     this.getCurrencyKeys();
     this.fetchData();
-    this.getSpecificCurrency();
     this.getConversionKeys();
   },
 };

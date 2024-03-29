@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent="conversionRate">
-    <div>
+    <div class="form-container">
       <input type="text" v-model="amountInput" v-on:keyup="conversionRate" />
       <select
         name="currency"
@@ -81,7 +81,7 @@ export default {
 </script>
 
 <style scoped>
-div {
+.form-container {
   display: flex;
   justify-content: space-around;
   margin: 25px auto;

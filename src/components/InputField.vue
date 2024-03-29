@@ -7,17 +7,15 @@
           {{ key }}
         </option>
       </select>
-    </div>
-    <p>=</p>
-    <div>
+      <p>=</p>
       <input type="text" :value="conversion" disabled />
       <select name="currency" id="currency" v-model="currencyTwo">
         <option v-for="key in conversionKeys" :key="key">
           {{ key }}
         </option>
       </select>
-      <button>Convert</button>
     </div>
+    <button>Convert</button>
   </form>
 </template>
 
@@ -58,7 +56,11 @@ export default {
     },
     conversionRate() {
       const rate = this.data[this.currencyOne][this.currencyTwo];
-      this.conversion = (parseFloat(this.amountInput) * rate).toFixed(2);
+      if (this.currencyTwo === "USD" || this.currencyTwo === "EUR") {
+        this.conversion = (parseFloat(this.amountInput) * rate).toFixed(2);
+      } else {
+        this.conversion = (parseFloat(this.amountInput) * rate).toFixed(12);
+      }
     },
   },
   mounted() {
@@ -68,3 +70,14 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+div {
+  display: flex;
+  justify-content: space-around;
+  margin: 25px auto;
+}
+select {
+  width: 80px;
+}
+</style>

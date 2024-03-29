@@ -33,8 +33,6 @@ export default {
   padding: 1rem;
   margin: 2rem auto;
   max-width: 40rem;
-  display: flex;
-  align-items: center;
   justify-content: space-around;
 }
 </style>

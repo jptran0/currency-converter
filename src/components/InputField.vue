@@ -1,21 +1,30 @@
 <template>
   <form @submit.prevent="conversionRate">
     <div>
-      <input type="text" v-model="amountInput" />
-      <select name="currency" id="currency" v-model="currencyOne">
+      <input type="text" v-model="amountInput" v-on:keyup="conversionRate" />
+      <select
+        name="currency"
+        id="currency"
+        v-model="currencyOne"
+        @change="conversionRate"
+      >
         <option v-for="key in currencyKeys" :key="key">
           {{ key }}
         </option>
       </select>
       <p>=</p>
       <input type="text" :value="conversion" disabled />
-      <select name="currency" id="currency" v-model="currencyTwo">
+      <select
+        name="currency"
+        id="currency"
+        v-model="currencyTwo"
+        @change="conversionRate"
+      >
         <option v-for="key in conversionKeys" :key="key">
           {{ key }}
         </option>
       </select>
     </div>
-    <button>Convert</button>
   </form>
 </template>
 

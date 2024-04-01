@@ -33,13 +33,11 @@ export default {
   data() {
     return {
       data: {},
-      currencyKeys: {},
+      currencyKeys: [],
       conversionKeys: [],
       currencyOne: "BTC",
       currencyTwo: "USD",
       amountInput: "1",
-      sampleCurrency: "XAU",
-      testData: "",
       conversion: "",
     };
   },
